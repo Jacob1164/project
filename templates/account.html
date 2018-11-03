@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+
+{% block title %}Account{% endblock %}
+
+{% block main %}
+<h1>Account Info</h1>
+<table class="table table-striped">
+    <tr>
+        <td><h5>Username</h5></td>
+        <td><h6>{{ user }}</h6></td>
+    </tr>
+    <tr>
+        <td><h5>Name</h5></td>
+        <td><h6>{{ name }}</h6></td>
+    </tr>
+    <tr>
+        <td><h5>Grade</h5></td>
+        <td><h6>{{ grade }}</h6></td>
+    </tr>
+</table>
+
+<a href="/password"><button class="btn btn-primary">Change your password</button></a><br><br>
+<form action="/wipe" method="post" id="wipe"><button class="btn btn-primary" type="submit">Delete your account</button></form>
+
+{% endblock %}

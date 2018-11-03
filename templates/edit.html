@@ -1,0 +1,48 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ name }}{% endblock %}
+
+{% block main %}
+<table class="class table">
+    <thead>
+        <th><h3>Class Name</h3></th>
+        <th><h3>Overall %</h3></th>
+        <th><h3>Overall Grade</h3></th>
+    </thead>
+    <tr>
+        <td><h4>{{ name }}</h4></td>
+        <td><h4 id="overall">{{ overall }}</h4></td>
+        <td><h4 id="overall_let">{{ totlet }}</h4></td>
+    </tr>
+</table>
+
+
+<form action="/classes/{{ name }}" method="post"><button class="btn btn-success" type="submit">Regular View</button></form>
+<br><h6>Press enter to update the grades.</h6>
+<h6>Changes will not be saved.</h6>
+<br>
+
+<form id="test">
+<table class="table table-striped">
+    <thead>
+        <th>Assignment Name</th>
+        <th>Points</th>
+        <th>%</th>
+        <th>Grade</th>
+    </thead>
+
+    <input hidden value="{{ num }}" id="classes_num" name="classes_num"/>
+    {% for i in range(num) %}
+        <tr>
+            <td id="assign_name{{ i }}">{{ names[i] }}</a></td>
+            <td><div class="form-group"><input type="text" id="earned{{ i }}" class="smsm" value="{{ earned[i] }}" name="earned{{ i }}" onchange="update();" onkeypress="return isNumberKey(event)"/>&nbsp;/&nbsp;<input type="text" id="out{{ i }}" class="smsm" value="{{ out[i] }}" name="out{{ i }}" onchange="update();" onkeypress="return isNumberKey(event)"/></div></td>
+            <td id="a{{ i }}">{{ nums[i] }}</td>
+            <td id="b{{ i }}">{{ lets[i] }}</td>
+
+
+        </tr>
+    {% endfor %}
+</table>
+</form>
+
+{% endblock %}

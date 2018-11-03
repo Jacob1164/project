@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block title %}GPA{% endblock %}
+
+{% block main %}
+<h3>Calculate your GPA!</h3>
+<a href="/gpa/scale"><h6>View the GPA scale.</h6></a>
+<form id="adjust" action="/adjust" method="post">
+     <div class="form-group">I have <input class="form-control" type="number" value="{{ amount }}" name="amount"/>&nbsp; Class(es) &nbsp; <button type="submit" class="btn btn-primary">ADJUST</button></div>
+</form>
+<form id="gpa" action="/gpa" method="post">
+    <table id="classes" class="table table-striped">
+        <thead>
+            <th scope="col">Class</th>
+            <th scope="col">Letter grade</th>
+            <th scope="col">Credit hours</th>
+            <th scope="col">GPA scale</th>
+        </thead>
+        {% for i in range(amount) %}
+            <tr scope="row">
+                <td>{{ i + 1 }}</td>
+                <td><div class="form-group"><select class="form-control" name="a{{ i }}">
+                    <option>A+</option>
+                    <option>A</option>
+                    <option>A-</option>
+                    <option>B+</option>
+                    <option>B</option>
+                    <option>B-</option>
+                    <option>C+</option>
+                    <option>C</option>
+                    <option>C-</option>
+                    <option>D+</option>
+                    <option>D</option>
+                    <option>D-</option>
+                    <option>F</option>
+                </select></div></td>
+                <td><div class="form-group"><input id="b{{ i }}" type="text" name="b{{ i }}" value="1.0" class="form-control" onkeypress="return isNumberKey(event)"/><div></div></td>
+                <td><div class="form-group"><select class="form-control" name="c{{ i }}">
+                    <option>4</option>
+                    <option>4.5</option>
+                    <option>5</option>
+                </select></div></td>
+            </tr>
+        {% endfor %}
+        <tr scope="row">
+            <td colspan="3"></td>
+            <td><div class="form-group"><button type="submit" class="btn btn-primary">Calculate</button></div></td>
+        </tr>
+    </table>
+    <input hidden class="form-control" type="number" value="{{ amount }}" name="amount"/>
+</form>
+
+{% endblock %}

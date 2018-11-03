@@ -1,0 +1,11 @@
+{% extends "layout.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+    <h2>Your GPA is...</h2>
+    <h1 class="huge">{{ val }}</h1>
+    <a href="/gpa"><button class="btn btn-primary">Calculate Another</button></a>
+    <a href="/"><button class="btn btn-primary">Return home</button></a><br><br>
+    <h6><a href="/download">Download a personalized excel file.</a></h6>
+{% endblock %}

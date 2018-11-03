@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+{% block title %}Manage{% endblock %}
+
+{% block main %}
+<table class="table table-striped">
+    <thead>
+        <th>Class name</th>
+        <th>GPA Scale</th>
+    </thead>
+    {% for row in rows %}
+        <tr>
+            <td><a href="/classes/{{ row['name'] }}">{{ row["name"] }}</a></td>
+            <td>{{ row["scale"] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% if not num == 0 %}
+<a href="/manage/update"><button class="btn btn-primary">Edit</button></a><br><br>
+{% endif %}
+
+<form action="/manage" id="new" method="post">
+    <input hidden type="text" name="method" value="add"/>
+    <div class="form-group">
+        Add &nbsp;<input type="number" id="add" name="add" class="form-control" value="1"/>&nbsp;Class
+        <button type="submit" class="btn btn-primary">GO</button><br>
+    </div>
+</form>
+{% if not num == 0 %}
+<form action="/manage" id="remove" method="post">
+    <input hidden type="text" name="method" value="remove"/>
+    <div class="form-group">
+        Remove &nbsp;<select id="remove" class="form-control" name="remove">
+            {% for row in rows %}
+                <option>{{ row["name"] }}</option>
+            {% endfor %}
+        </select>&nbsp;
+        <button type="submit" class="btn btn-primary">GO</button><br>
+    </div>
+</form><br>
+{% endif %}
+
+
+<div id="depends"></div>
+{% endblock %}

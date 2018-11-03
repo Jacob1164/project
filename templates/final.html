@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}Results{% endblock %}
+
+{% block main %}
+    {% if method == 0 %}
+        <h2>Your overall grade is...</h2>
+        <h1 class="huge">{{ val }}</h1>
+        <a href="/exams"><button class="btn btn-primary">Calculate Another</button></a>
+        <a href="/"><button class="btn btn-primary">Return home</button></a>
+    {% else %}
+        <h2>You need at least a...</h2>
+        <h1 class="huge">{{ val }}</h1>
+        <h2>In order to get a {{ goal }}</h2><br>
+        <a href="/exams"><button class="btn btn-primary">Calculate Another</button></a>
+        <a href="/"><button class="btn btn-primary">Return home</button></a>
+    {% endif %}
+{% endblock %}

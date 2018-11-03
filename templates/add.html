@@ -1,0 +1,39 @@
+{% extends "layout.html" %}
+
+{% block title %}Add{% endblock %}
+
+{% block main %}
+{% if message %}
+<div class="alert alert-danger" role="alert">
+  {{ message }}
+</div>
+{% endif %}
+<form id="add" action="/add" method="post">
+    <input hidden type="number" name="number" value="{{ number }}"/>
+    <table class="class table table-striped">
+        <thead>
+            <th>Name</th>
+            <th>GPA Scale</th>
+        </thead>
+        {% for i in range(number) %}
+            <tr>
+                <td>
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="name{{ i }}"/>
+                    </div>
+                </td>
+                <td>
+                    <div class="form-group">
+                        <select class="form-control" name="scale{{ i }}">
+                            <option>4.0</option>
+                            <option>4.5</option>
+                            <option>5.0</option>
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </table>
+    <button type="submit" class="btn btn-primary">Add</button>
+</form>
+{% endblock %}

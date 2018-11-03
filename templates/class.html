@@ -1,0 +1,66 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ name }}{% endblock %}
+
+{% block main %}
+<table class="class table">
+    <thead>
+        <th><h3>Class Name</h3></th>
+        <th><h3>Overall %</h3></th>
+        <th><h3>Overall Grade</h3></th>
+    </thead>
+    <tr>
+        <td><h4>{{ name }}</h4></td>
+        <td><h4>{{ overall }}</h4></td>
+        <td><h4>{{ totlet }}</h4></td>
+    </tr>
+</table>
+
+
+<form action="/classes/test/{{ name }}" method="post"><button class="btn btn-success" type="submit">"What if"</button></form><br>
+<form action="/classes/{{ name }}/update" method="get"><button class="btn btn-success" type="submit">Edit Grades</button></form>
+<br><br>
+
+<table class="table table-striped">
+
+    <thead>
+        <th>Assignment Name</th>
+        <th>Points</th>
+        <th>%</th>
+        <th>Grade</th>
+        <th>Delete</th>
+    </thead>
+
+    {% for i in range(num) %}
+        <tr>
+            <td>{{ names[i] }}</a></td>
+            <td>{{ points[i] }}</td>
+            <td>{{ nums[i] }}</td>
+            <td>{{ lets[i] }}</td>
+
+            <form action="/remove" method="post" class="delete">
+                <input hidden name="assignment" value="{{ names[i] }}"/>
+                <input hidden name="class" value="{{ name }}"/>
+                <input hidden name="idd" value="{{ idd }}"/>
+                <td><button type="submit" class="btn btn-danger" class="delbut">X</button></td>
+            </form>
+        </tr>
+    {% endfor %}
+
+    <form action="/insert" method="post" id="insert" >
+
+        <tr>
+            <td><div class="form-group"><input type="text" name="name" class="form-control" id="assign_name"/></div></td>
+            <td><div class="form-group"><input type="text" name="a" class="smsm" id="a" onkeypress="return isNumberKey(event)"/>&nbsp;/&nbsp;<input type="text" name="b" class="smsm" id="b" onkeypress="return isNumberKey(event)"/></div></td>
+            <td><button type="submit" class="btn btn-primary">Add Assignment</button></td>
+            <td></td>
+            <td></td>
+        </tr>
+
+        <input hidden name="class" value="{{ name }}"/>
+        <input hidden name="idd" value="{{ idd }}"/>
+
+    </form>
+</table>
+
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}{{ name }}{% endblock %}
+
+{% block main %}
+<h1>{{ name }}</h1>
+<br>
+
+
+<form action="/classes/{{ name }}" method="post"><button class="btn btn-success" type="submit">Return to Regular View</button></form>
+
+{% if not message %}
+
+<br><h6>Press save to save the new information.</h6>
+<h6>Changes WILL be saved.</h6>
+<br>
+
+<form id="edit" method="post" action="/classes/{{ name }}/update">
+<table class="table table-striped">
+    <thead>
+        <th>Assignment Name</th>
+        <th>Points</th>
+    </thead>
+
+    <input hidden value="{{ num }}" id="classes_num" name="classes_num"/>
+    {% for i in range(num) %}
+        <tr>
+            <td id="assign_name{{ i }}"><div class="form-group"><input class="form-control" type="text" value="{{ names[i] }}" name="name{{ i }}"/></div></td>
+            <td><div class="form-group"><input type="text" id="earned{{ i }}" class="smsm" value="{{ earned[i] }}" name="earned{{ i }}" onkeypress="return isNumberKey(event)"/>&nbsp;/&nbsp;<input type="text" id="out{{ i }}" class="smsm" value="{{ out[i] }}" name="out{{ i }}" onkeypress="return isNumberKey(event)"/></div></td>
+            <input hidden type="id" name="id{{ i }}" value="{{ idd[i] }}"/>
+        </tr>
+    {% endfor %}
+</table>
+<input hidden value="{{ name }}" name="class_name" type="text"/>
+<button type="submit" class="btn btn-success">Save</button>
+</form>
+
+{% else %}
+<br><br>
+<h2>{{ message }}</h2>
+
+{% endif %}
+
+{% endblock %}

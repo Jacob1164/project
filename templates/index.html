@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+
+{% block title %}Home{% endblock %}
+
+{% block main %}
+    <h1>Welcome to MyGrades!</h1>
+    {% if not session.user_id %}
+
+    <h6 class="left">On this website, you can get all the information that you need to know about your grades.
+    Especially helpful for those whose school does not use an online grade system, MyGrades lets you
+    experiment with your grades. Features include:<br><br>
+    <ul>
+        <li>GPA calculator with a custom number of classes and downloadable excel file</li>
+        <li>Computing what grade you need on your final, or your overall grade if you already took the final</li>
+        <li>The ability to see how your grade would change if you got a different score on that one assignment or test</li>
+        <li>The ability to keep track of and experiment with all your classes.</li>
+    </ul>
+    Thank you for using MyGrades!</h6>
+
+        <br><h4>Create an account or sign in to access the last 2 features.</h4>
+
+    {% else %}
+    <table class="table table-striped class">
+    <thead>
+        <th>Class name</th>
+        <th>Percentage</th>
+        <th>Letter Grade</th>
+        <th>GPA Value</th>
+    </thead>
+    {% for i in range(num) %}
+        <tr>
+            <td><a href="/classes/{{ names[i] }}">{{ names[i] }}</a></td>
+            <td>{{ numbers[i] }}</td>
+            <td>{{ lets[i] }}</td>
+            <td>{{ value[i] }}</td>
+        </tr>
+    {% endfor %}
+</table>
+<h5>GPA: {{ gpa }}</h5>
+<a href="/gpa/scale"><h6>View the GPA scale.</h6></a>
+<a href="/manage"><button class="btn btn-primary">Add/Remove a Class</button></a>
+
+    {% endif %}
+
+{% endblock %}

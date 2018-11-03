@@ -1,0 +1,19 @@
+{% extends "layout.html" %}
+
+{% block title %}Exams{% endblock %}
+
+{% block main %}
+    <h2>Choose your scenario...</h2>
+    <form>
+        <div class="form-group">
+            <input type="button" id="taken" class="btn btn-success" value="I've already taken my final, and want to know my overall grade."/><br>
+        </div>
+        <div class="form-group">
+            <input type="button" id="upcoming" class="btn btn-success" value="I want to know how well I need to do on my final."/><br>
+        </div>
+    </form><br>
+
+    <div id="depends"></div>
+
+
+{% endblock %}
